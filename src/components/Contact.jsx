@@ -3,13 +3,6 @@ import { motion } from 'framer-motion'
 import { useInView } from '../hooks/useInView'
 import { FiGithub, FiLinkedin, FiMail, FiPhone, FiMapPin, FiSend } from 'react-icons/fi'
 import { HiCheckCircle, HiXCircle } from 'react-icons/hi'
-import emailjs from '@emailjs/browser'
-
-const EMAILJS_SERVICE_ID  = 'service_t3ctmpp'
-const EMAILJS_TEMPLATE_ID = 'template_nkzf9nd'
-const EMAILJS_PUBLIC_KEY  = 'cENDtDawul4CG3Mu4'
-
-emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY })
 
 export default function Contact() {
   const { ref, inView } = useInView()
@@ -26,26 +19,24 @@ export default function Contact() {
     setErrorMsg('')
 
     try {
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        {
-          from_name: form.name,
-          your_email: form.email,
-          message: form.message,
-          to_name: 'Kundan',
-        }
-      )
+      const res = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+
+      const data = await res.json()
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to send')
+      }
+
       setStatus('success')
       setForm({ name: '', email: '', message: '' })
       setTimeout(() => setStatus('idle'), 5000)
     } catch (err) {
-      console.error('EmailJS error:', err)
-      const detail =
-        err?.text ||
-        err?.message ||
-        (typeof err === 'string' ? err : 'Unknown error')
-      setErrorMsg(detail)
+      console.error('Send error:', err)
+      setErrorMsg(err.message)
       setStatus('error')
       setTimeout(() => setStatus('idle'), 8000)
     }
@@ -223,4 +214,5 @@ export default function Contact() {
     </section>
   )
 }
+
 
