@@ -23,11 +23,12 @@
 
   /* Gradient text — mobile-safe version */
   .gradient-text {
-    background: linear-gradient(90deg, #818cf8, #a78bfa);
+    display: inline-block;
+    background-image: linear-gradient(90deg, #818cf8, #a78bfa);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    color: transparent; /* fallback if background-clip:text isn't supported */
+    color: transparent;
   }
 
   /* Glass card */
