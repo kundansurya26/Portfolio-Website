@@ -43,12 +43,12 @@ const techBadges = [
 
 function SkillBar({ name, level, color, delay, inView }) {
   return (
-    <div className="mb-4">
-      <div className="flex justify-between items-center mb-1.5">
-        <span className="text-slate-300 text-sm font-medium">{name}</span>
-        <span className="text-slate-500 text-xs font-mono">{level}%</span>
+    <div className="mb-3 sm:mb-4">
+      <div className="flex justify-between items-center mb-1 sm:mb-1.5">
+        <span className="text-slate-300 text-xs sm:text-sm font-medium">{name}</span>
+        <span className="text-slate-500 text-[10px] sm:text-xs font-mono">{level}%</span>
       </div>
-      <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+      <div className="h-1 sm:h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
         <motion.div
           initial={{ width: 0 }}
           animate={inView ? { width: `${level}%` } : { width: 0 }}
@@ -64,36 +64,36 @@ export default function Skills() {
   const { ref, inView } = useInView()
 
   return (
-    <section id="skills" ref={ref} className="py-28 relative overflow-hidden">
+    <section id="skills" ref={ref} className="py-16 sm:py-20 md:py-28 relative overflow-hidden">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute right-0 top-1/3 w-72 h-72 bg-accent-600/5 rounded-full blur-3xl" />
+        <div className="absolute right-0 top-1/3 w-48 h-48 sm:w-72 sm:h-72 bg-accent-600/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
-          <p className="font-mono text-brand-400 text-xs tracking-widest uppercase mb-3">What I Know</p>
-          <h2 className="section-heading">Technical Skills</h2>
-          <div className="w-12 h-0.5 bg-gradient-to-r from-brand-600 to-accent-600 mx-auto mt-4" />
+          <p className="font-mono text-brand-400 text-[10px] sm:text-xs tracking-widest uppercase mb-2 sm:mb-3">What I Know</p>
+          <h2 className="section-heading text-3xl sm:text-4xl md:text-5xl">Technical Skills</h2>
+          <div className="w-12 h-0.5 bg-gradient-to-r from-brand-600 to-accent-600 mx-auto mt-3 sm:mt-4" />
         </motion.div>
 
         {/* Skill bars grid */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-10 sm:mb-16">
           {skillGroups.map((group, gi) => (
             <motion.div
               key={group.category}
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: gi * 0.15 }}
-              className="glass rounded-2xl p-6"
+              className="glass rounded-2xl p-4 sm:p-6"
             >
-              <div className="flex items-center gap-3 mb-6">
-                <div className={`w-2 h-8 rounded-full bg-gradient-to-b ${group.color}`} />
-                <h3 className="font-display font-semibold text-white text-base">{group.category}</h3>
+              <div className="flex items-center gap-3 mb-4 sm:mb-6">
+                <div className={`w-1.5 sm:w-2 h-6 sm:h-8 rounded-full bg-gradient-to-b ${group.color}`} />
+                <h3 className="font-display font-semibold text-white text-sm sm:text-base">{group.category}</h3>
               </div>
               {group.skills.map((skill, si) => (
                 <SkillBar
@@ -115,8 +115,8 @@ export default function Skills() {
           transition={{ delay: 0.6, duration: 0.6 }}
           className="text-center"
         >
-          <p className="text-slate-500 text-xs font-mono uppercase tracking-widest mb-6">Also comfortable with</p>
-          <div className="flex flex-wrap justify-center gap-2">
+          <p className="text-slate-500 text-[10px] sm:text-xs font-mono uppercase tracking-widest mb-4 sm:mb-6">Also comfortable with</p>
+          <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
             {techBadges.map((tech, i) => (
               <motion.span
                 key={tech}
@@ -124,7 +124,7 @@ export default function Skills() {
                 animate={inView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ delay: 0.7 + i * 0.04 }}
                 whileHover={{ scale: 1.08, y: -2 }}
-                className="tag cursor-default"
+                className="tag text-[10px] sm:text-xs cursor-default"
               >
                 {tech}
               </motion.span>
