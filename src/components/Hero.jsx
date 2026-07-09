@@ -131,7 +131,7 @@ export default function Hero() {
               and analyzing data to generate insights. Skilled in Python, React, and modern web technologies.
             </motion.p>
 
-            {/* FIX: Both buttons matching the theme */}
+            {/* FIX: Download Resume button with white text */}
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row justify-center lg:justify-start gap-2 sm:gap-4 mb-4 sm:mb-10">
               <a href="#projects" className="btn-primary justify-center text-xs sm:text-base py-2 sm:py-3.5 px-4 sm:px-8">
                 View Projects
@@ -140,7 +140,7 @@ export default function Hero() {
               <a
                 href={resumePDF}
                 download="Kundan_Suryawanshi_Resume.pdf"
-                className="btn-outline justify-center text-xs sm:text-base py-2 sm:py-3.5 px-4 sm:px-8 border-2 border-brand-500/50 hover:border-brand-400 hover:bg-brand-600/10"
+                className="btn-outline justify-center text-xs sm:text-base py-2 sm:py-3.5 px-4 sm:px-8 border-2 border-brand-500/50 hover:border-brand-400 hover:bg-brand-600/10 text-white"
               >
                 <HiDownload className="w-3 h-3 sm:w-4 sm:h-4" />
                 Download Resume
