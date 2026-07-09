@@ -36,27 +36,27 @@ export default function Education() {
   const { ref, inView } = useInView()
 
   return (
-    <section id="education" ref={ref} className="py-28 relative overflow-hidden">
+    <section id="education" ref={ref} className="py-16 sm:py-20 md:py-28 relative overflow-hidden">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute right-0 bottom-0 w-72 h-72 bg-brand-600/5 rounded-full blur-3xl" />
+        <div className="absolute right-0 bottom-0 w-48 h-48 sm:w-72 sm:h-72 bg-brand-600/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
-          <p className="font-mono text-brand-400 text-xs tracking-widest uppercase mb-3">My Background</p>
-          <h2 className="section-heading">Education</h2>
-          <div className="w-12 h-0.5 bg-gradient-to-r from-brand-600 to-accent-600 mx-auto mt-4" />
+          <p className="font-mono text-brand-400 text-[10px] sm:text-xs tracking-widest uppercase mb-2 sm:mb-3">My Background</p>
+          <h2 className="section-heading text-3xl sm:text-4xl md:text-5xl">Education</h2>
+          <div className="w-12 h-0.5 bg-gradient-to-r from-brand-600 to-accent-600 mx-auto mt-3 sm:mt-4" />
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-10">
+        <div className="grid lg:grid-cols-3 gap-8 sm:gap-10">
           <div className="lg:col-span-2">
-            <div className="relative pl-8 space-y-6">
-              <div className="absolute left-3 top-4 bottom-0 w-px bg-gradient-to-b from-brand-600/60 via-accent-600/30 to-transparent" />
+            <div className="relative pl-6 sm:pl-8 space-y-4 sm:space-y-6">
+              <div className="absolute left-2 sm:left-3 top-4 bottom-0 w-px bg-gradient-to-b from-brand-600/60 via-accent-600/30 to-transparent" />
               {education.map((edu, i) => (
                 <motion.div
                   key={edu.degree}
@@ -65,19 +65,19 @@ export default function Education() {
                   transition={{ delay: i * 0.15, duration: 0.6 }}
                   className="relative"
                 >
-                  <div className={`absolute -left-5 top-6 w-4 h-4 rounded-full border-2 flex items-center justify-center ${edu.status === 'current' ? 'border-brand-500 bg-brand-600' : 'border-slate-600 bg-dark-900'}`}>
-                    {edu.status === 'current' && <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />}
+                  <div className={`absolute -left-3.5 sm:-left-5 top-5 sm:top-6 w-3 h-3 sm:w-4 sm:h-4 rounded-full border-2 flex items-center justify-center ${edu.status === 'current' ? 'border-brand-500 bg-brand-600' : 'border-slate-600 bg-dark-900'}`}>
+                    {edu.status === 'current' && <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-white animate-pulse" />}
                   </div>
-                  <div className="glass-hover rounded-2xl p-6">
-                    <h3 className="font-display font-semibold text-white text-base leading-tight mb-3">{edu.degree}</h3>
-                    <div className="flex flex-wrap items-center justify-between gap-2">
-                      <p className="text-brand-400 text-sm font-medium">{edu.institution}</p>
-                      <span className={`tag shrink-0 ${edu.status === 'current' ? 'border-green-500/30 text-green-400 bg-green-500/10' : 'text-slate-400 border-slate-700/40'}`}>
+                  <div className="glass-hover rounded-2xl p-4 sm:p-6">
+                    <h3 className="font-display font-semibold text-white text-sm sm:text-base leading-tight mb-2 sm:mb-3">{edu.degree}</h3>
+                    <div className="flex flex-wrap items-center justify-between gap-1 sm:gap-2">
+                      <p className="text-brand-400 text-xs sm:text-sm font-medium">{edu.institution}</p>
+                      <span className={`tag text-[10px] sm:text-xs shrink-0 ${edu.status === 'current' ? 'border-green-500/30 text-green-400 bg-green-500/10' : 'text-slate-400 border-slate-700/40'}`}>
                         {edu.status === 'current' ? '● Active · 2023 – 2027' : edu.period}
                       </span>
                     </div>
-                    <div className="mt-3 pt-3 border-t border-white/5">
-                      <span className="font-mono font-bold text-sm gradient-text">{edu.score}</span>
+                    <div className="mt-2 sm:mt-3 pt-2 sm:pt-3 border-t border-white/5">
+                      <span className="font-mono font-bold text-xs sm:text-sm gradient-text">{edu.score}</span>
                     </div>
                   </div>
                 </motion.div>
@@ -90,21 +90,21 @@ export default function Education() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.4, duration: 0.6 }}
           >
-            <div className="glass rounded-2xl p-6">
-              <p className="font-mono text-brand-400 text-xs tracking-widest uppercase mb-5">Core Strengths</p>
-              <div className="space-y-3">
+            <div className="glass rounded-2xl p-4 sm:p-6">
+              <p className="font-mono text-brand-400 text-[10px] sm:text-xs tracking-widest uppercase mb-3 sm:mb-5">Core Strengths</p>
+              <div className="space-y-2 sm:space-y-3">
                 {strengths.map((s, i) => (
                   <motion.div
                     key={s.label}
                     initial={{ opacity: 0, x: 20 }}
                     animate={inView ? { opacity: 1, x: 0 } : {}}
                     transition={{ delay: 0.5 + i * 0.1 }}
-                    className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 transition-colors group"
+                    className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-xl hover:bg-white/5 transition-colors group"
                   >
-                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-600/20 to-accent-600/20 border border-brand-600/20 flex items-center justify-center text-brand-400 text-xs font-mono font-bold shrink-0">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-lg bg-gradient-to-br from-brand-600/20 to-accent-600/20 border border-brand-600/20 flex items-center justify-center text-brand-400 text-[10px] sm:text-xs font-mono font-bold shrink-0">
                       {s.num}
                     </div>
-                    <span className="text-slate-300 text-sm">{s.label}</span>
+                    <span className="text-slate-300 text-xs sm:text-sm">{s.label}</span>
                   </motion.div>
                 ))}
               </div>
@@ -114,13 +114,13 @@ export default function Education() {
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.8 }}
-              className="glass rounded-2xl p-6 mt-4"
+              className="glass rounded-2xl p-4 sm:p-6 mt-3 sm:mt-4"
             >
-              <p className="font-mono text-brand-400 text-xs tracking-widest uppercase mb-4">Extracurriculars</p>
+              <p className="font-mono text-brand-400 text-[10px] sm:text-xs tracking-widest uppercase mb-2 sm:mb-4">Extracurriculars</p>
               {['Coding competitions & hackathons', 'Open-source contributions on GitHub', 'Volunteered teaching programming'].map((item, i) => (
-                <div key={i} className="flex items-start gap-2 mb-2 last:mb-0">
-                  <span className="text-brand-400 mt-0.5 shrink-0">▸</span>
-                  <span className="text-slate-400 text-xs leading-relaxed">{item}</span>
+                <div key={i} className="flex items-start gap-1.5 sm:gap-2 mb-1.5 sm:mb-2 last:mb-0">
+                  <span className="text-brand-400 mt-0.5 shrink-0 text-xs sm:text-sm">▸</span>
+                  <span className="text-slate-400 text-[10px] sm:text-xs leading-relaxed">{item}</span>
                 </div>
               ))}
             </motion.div>
