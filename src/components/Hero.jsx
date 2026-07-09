@@ -116,10 +116,10 @@ export default function Hero() {
             </motion.p>
 
             {/* FIX 1: Name - Smaller on mobile to prevent hiding */}
-            <motion.h1 variants={itemVariants} className="font-display font-extrabold text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white leading-[1.1] sm:leading-none mb-2 sm:mb-4 tracking-tight">
+            <motion.h2 variants={itemVariants} className="font-display font-extrabold text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white leading-[1.1] sm:leading-none mb-2 sm:mb-4 tracking-tight">
               Kundan<br />
               <span className="text-slate-400">Suryawanshi</span>
-            </motion.h1>
+            </motion.h2>
 
             <motion.div variants={itemVariants} className="font-display text-lg sm:text-xl md:text-2xl lg:text-3xl text-white mb-3 sm:mb-6 h-8 sm:h-12 flex items-center justify-center lg:justify-start">
               <TypingEffect />
