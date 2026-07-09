@@ -156,4 +156,34 @@ export default function Projects() {
 
                   <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-5">{project.description}</p>
 
-                  <div className="flex flex-wrap gap-1 sm:gap
+                  <div className="flex flex-wrap gap-1 sm:gap-1.5">
+                    {project.tags.map((tag) => (
+                      <span key={tag} className="tag text-[8px] sm:text-xs">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.8 }}
+          className="text-center mt-8 sm:mt-10"
+        >
+          <a
+            href="https://github.com/kundansurya26"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-outline text-sm sm:text-base py-2 sm:py-3 px-4 sm:px-6"
+          >
+            <FiGithub size={14} className="sm:w-4 sm:h-4" />
+            View All on GitHub
+          </a>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
