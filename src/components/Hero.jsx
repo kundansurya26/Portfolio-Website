@@ -200,24 +200,24 @@ export default function Hero() {
                   />
                 </div>
 
-                {/* Developer Badge */}
+                {/* FIX: Developer Badge - Original colors, white text */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1, duration: 0.5 }}
                   className="absolute -bottom-2 -left-3 sm:-bottom-3 sm:-left-4 md:-bottom-4 md:-left-5 glass rounded-xl px-2 py-1 sm:px-3 sm:py-1.5 md:px-4 md:py-2 text-[8px] sm:text-xs md:text-sm font-mono border-2 border-brand-500/50 bg-brand-900/80 backdrop-blur-xl shadow-xl shadow-brand-600/30 whitespace-nowrap"
                 >
-                  <span className="text-slate-400 font-bold">&lt;</span>
-                  <span className="text-brand-300 font-bold">developer</span>
-                  <span className="text-slate-400 font-bold"> /&gt;</span>
+                  <span className="text-white/60 font-bold">&lt;</span>
+                  <span className="text-white font-bold">developer</span>
+                  <span className="text-white/60 font-bold"> /&gt;</span>
                 </motion.div>
 
-                {/* FIX: CGPA Badge with Bright, Eye-Catching Colors */}
+                {/* FIX: CGPA Badge - Original colors, white text */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1.2, duration: 0.5 }}
-                  className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 md:-top-5 md:-right-5 rounded-xl px-2 py-1 sm:px-3 sm:py-1.5 md:px-5 md:py-2.5 text-[8px] sm:text-xs md:text-sm font-mono border-2 border-yellow-400/80 bg-gradient-to-br from-yellow-500/90 via-amber-500/90 to-orange-500/90 backdrop-blur-xl shadow-2xl shadow-yellow-500/60 animate-pulse whitespace-nowrap"
+                  className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 md:-top-5 md:-right-5 glass rounded-xl px-2 py-1 sm:px-3 sm:py-1.5 md:px-5 md:py-2.5 text-[8px] sm:text-xs md:text-sm font-mono border-2 border-accent-400/60 bg-gradient-to-br from-accent-900/90 to-purple-900/90 backdrop-blur-xl shadow-2xl shadow-accent-500/40 animate-pulse whitespace-nowrap"
                 >
                   <span className="text-white font-bold text-[10px] sm:text-xs md:text-base drop-shadow-lg">
                     ⭐ CGPA 8.30
