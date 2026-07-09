@@ -131,18 +131,18 @@ export default function Hero() {
               and analyzing data to generate insights. Skilled in Python, React, and modern web technologies.
             </motion.p>
 
-            {/* FIX: Download Resume button with white text */}
-            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row justify-center lg:justify-start gap-2 sm:gap-4 mb-4 sm:mb-10">
-              <a href="#projects" className="btn-primary justify-center text-xs sm:text-base py-2 sm:py-3.5 px-4 sm:px-8">
+            {/* FIX: Smaller Download Resume button with icon + text in one line */}
+            <motion.div variants={itemVariants} className="flex flex-wrap items-center justify-center lg:justify-start gap-2 sm:gap-3 mb-4 sm:mb-10">
+              <a href="#projects" className="btn-primary justify-center text-xs sm:text-sm py-1.5 sm:py-2 px-3 sm:px-5">
                 View Projects
-                <HiArrowDown className="w-3 h-3 sm:w-4 sm:h-4" />
+                <HiArrowDown className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
               </a>
               <a
                 href={resumePDF}
                 download="Kundan_Suryawanshi_Resume.pdf"
-                className="btn-outline justify-center text-xs sm:text-base py-2 sm:py-3.5 px-4 sm:px-8 border-2 border-brand-500/50 hover:border-brand-400 hover:bg-brand-600/10 text-white"
+                className="inline-flex items-center gap-1.5 text-white text-xs sm:text-sm font-medium py-1.5 sm:py-2 px-3 sm:px-4 rounded-xl border-2 border-brand-500/50 hover:border-brand-400 hover:bg-brand-600/10 transition-all duration-300 glass whitespace-nowrap"
               >
-                <HiDownload className="w-3 h-3 sm:w-4 sm:h-4" />
+                <HiDownload className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                 Download Resume
               </a>
             </motion.div>
