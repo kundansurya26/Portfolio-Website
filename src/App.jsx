@@ -11,10 +11,10 @@ import BackToTop from './components/BackToTop'
 
 export default function App() {
   return (
-    <div className="relative min-h-screen bg-dark-900">
+    <div className="relative min-h-screen bg-dark-900 overflow-x-hidden max-w-[100vw]">
       <div className="noise-overlay" aria-hidden="true" />
       <Navbar />
-      <main>
+      <main className="overflow-x-hidden">
         <Hero />
         <About />
         <Skills />
