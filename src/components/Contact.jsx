@@ -194,17 +194,19 @@ export default function Contact() {
                 </motion.div>
               )}
 
-              <button
+            <button
                 type="submit"
                 disabled={status === 'sending' || status === 'success'}
-                className={`w-full btn-primary justify-center text-sm sm:text-base py-2.5 sm:py-3.5 disabled:opacity-70 disabled:cursor-not-allowed ${status === 'success' ? 'from-green-600 to-green-500' : ''}`}
+                className={`w-full bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-700 hover:to-accent-700 text-white font-semibold text-base sm:text-lg py-3.5 sm:py-4 px-6 rounded-xl transition-all duration-300 shadow-lg shadow-brand-600/30 hover:shadow-xl hover:scale-[1.02] flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100 ${
+                  status === 'success' ? 'from-green-600 to-green-500 hover:from-green-700 hover:to-green-600' : ''
+                }`}
               >
                 {status === 'sending' ? (
-                  <><span className="w-3 h-3 sm:w-4 sm:h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> Sending...</>
+                  <><span className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" /> Sending...</>
                 ) : status === 'success' ? (
-                  <><HiCheckCircle size={15} className="sm:w-[17px] sm:h-[17px]" /> Message Sent!</>
+                  <><HiCheckCircle size={20} className="sm:w-[22px] sm:h-[22px]" /> Message Sent!</>
                 ) : (
-                  <><FiSend size={13} className="sm:w-[15px] sm:h-[15px]" /> Send Message</>
+                  <><FiSend size={18} className="sm:w-5 sm:h-5" /> Send Message</>
                 )}
               </button>
             </form>
