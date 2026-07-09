@@ -2,12 +2,12 @@ import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi'
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/5 py-8">
-      <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="text-slate-600 text-xs font-mono">
+    <footer className="border-t border-white/5 py-6 sm:py-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
+        <p className="text-slate-600 text-[10px] sm:text-xs font-mono text-center sm:text-left">
           © {new Date().getFullYear()} Kundan Suryawanshi. Built with React & Framer Motion.
         </p>
-        <div className="flex gap-4">
+        <div className="flex gap-3 sm:gap-4">
           {[
             { icon: FiGithub, href: 'https://github.com/kundansurya26' },
             { icon: FiLinkedin, href: 'https://www.linkedin.com/in/kundan-suryawanshi/' },
@@ -20,7 +20,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="text-slate-600 hover:text-brand-400 transition-colors"
             >
-              <Icon size={16} />
+              <Icon size={14} className="sm:w-4 sm:h-4" />
             </a>
           ))}
         </div>
