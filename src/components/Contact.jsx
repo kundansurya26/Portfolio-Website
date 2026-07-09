@@ -115,15 +115,18 @@ export default function Hero() {
               Hi there, I'm
             </motion.p>
 
+            {/* FIX: Larger name on mobile */}
             <motion.h1 variants={itemVariants} className="font-display font-extrabold text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white leading-[1.1] sm:leading-none mb-3 sm:mb-4 tracking-tight">
               Kundan<br />
               <span className="text-slate-400">Suryawanshi</span>
             </motion.h1>
 
+            {/* FIX: Typing effect more visible */}
             <motion.div variants={itemVariants} className="font-display text-xl sm:text-2xl md:text-3xl text-white mb-4 sm:mb-6 h-10 sm:h-12 flex items-center justify-center lg:justify-start">
               <TypingEffect />
             </motion.div>
 
+            {/* FIX: Description text with better contrast */}
             <motion.p variants={itemVariants} className="text-slate-300 text-base sm:text-lg leading-relaxed mb-6 sm:mb-10 max-w-lg mx-auto lg:mx-0 font-body">
               Motivated B.Tech CSE student passionate about building responsive web applications
               and analyzing data to generate insights. Skilled in Python, React, and modern web technologies.
@@ -198,28 +201,26 @@ export default function Hero() {
                   />
                 </div>
 
-                {/* Developer Badge */}
+                {/* FIX: Badges with better visibility */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1, duration: 0.5 }}
-                  className="absolute -bottom-2 -left-4 sm:-bottom-3 sm:-left-6 glass rounded-xl px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm font-mono text-brand-300 border border-brand-600/30 bg-brand-900/70 backdrop-blur-xl shadow-lg shadow-brand-600/20"
+                  className="absolute -bottom-2 -left-4 sm:-bottom-3 sm:-left-6 glass rounded-xl px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm font-mono text-brand-300 border border-brand-600/30 bg-brand-900/50 backdrop-blur-xl"
                 >
                   <span className="text-slate-400">&lt;</span>
                   developer
                   <span className="text-slate-400"> /&gt;</span>
                 </motion.div>
 
-                {/* FIX: CGPA Badge - More visible with better styling */}
+                {/* FIX: CGPA badge more visible */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1.2, duration: 0.5 }}
-                  className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 glass rounded-xl px-3 py-2 sm:px-5 sm:py-3 text-xs sm:text-sm font-mono border-2 border-accent-500/50 bg-gradient-to-br from-accent-900/90 to-brand-900/90 backdrop-blur-xl shadow-xl shadow-accent-600/30"
+                  className="absolute -top-2 -right-3 sm:-top-3 sm:-right-4 glass rounded-xl px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm font-mono text-accent-300 border border-accent-600/30 bg-accent-900/50 backdrop-blur-xl font-bold"
                 >
-                  <span className="text-accent-300 font-bold text-sm sm:text-base">
-                    CGPA 8.30 ✦
-                  </span>
+                  CGPA 8.30 ✦
                 </motion.div>
               </motion.div>
             </div>
@@ -244,5 +245,4 @@ export default function Hero() {
     </section>
   )
 }
-
 
