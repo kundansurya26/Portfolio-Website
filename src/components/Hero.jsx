@@ -65,6 +65,15 @@ const itemVariants = {
 }
 
 export default function Hero() {
+  // Smooth scroll to projects section
+  const scrollToProjects = (e) => {
+    e.preventDefault()
+    const projectsSection = document.getElementById('projects')
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <section
       id="home"
@@ -131,12 +140,19 @@ export default function Hero() {
               and analyzing data to generate insights. Skilled in Python, React, and modern web technologies.
             </motion.p>
 
-            {/* FIX: Smaller Download Resume button with icon + text in one line */}
+            {/* FIX: Both buttons - View Projects & Download Resume */}
             <motion.div variants={itemVariants} className="flex flex-wrap items-center justify-center lg:justify-start gap-2 sm:gap-3 mb-4 sm:mb-10">
-              <a href="#projects" className="btn-primary justify-center text-xs sm:text-sm py-1.5 sm:py-2 px-3 sm:px-5">
-                View Projects
+              {/* View Projects Button */}
+              <a
+                href="#projects"
+                onClick={scrollToProjects}
+                className="inline-flex items-center gap-1.5 text-white text-xs sm:text-sm font-medium py-1.5 sm:py-2 px-3 sm:px-5 rounded-xl bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-700 hover:to-accent-700 transition-all duration-300 shadow-lg shadow-brand-600/25 hover:shadow-xl hover:scale-105 whitespace-nowrap"
+              >
                 <HiArrowDown className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                View Projects
               </a>
+
+              {/* Download Resume Button */}
               <a
                 href={resumePDF}
                 download="Kundan_Suryawanshi_Resume.pdf"
