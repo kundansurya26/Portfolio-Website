@@ -96,7 +96,6 @@ export default function Hero() {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full py-6 sm:py-12 md:py-20">
-        {/* FIX: Changed grid to prevent overlap on laptop */}
         <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 xl:gap-16 items-center">
           {/* Left — Text */}
           <motion.div
@@ -116,7 +115,6 @@ export default function Hero() {
               Hi there, I'm
             </motion.p>
 
-            {/* FIX: Proper name sizing for all screens */}
             <motion.h1 variants={itemVariants} className="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white leading-[1.1] sm:leading-none mb-1 sm:mb-4 tracking-tight">
               Kundan<br />
               <span className="text-slate-400 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
@@ -188,7 +186,6 @@ export default function Hero() {
                 className="absolute -inset-3 sm:-inset-8 rounded-full border border-dashed border-accent-600/10"
               />
 
-              {/* FIX: Proper avatar sizing for laptop */}
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
@@ -215,14 +212,14 @@ export default function Hero() {
                   <span className="text-slate-400 font-bold"> /&gt;</span>
                 </motion.div>
 
-                {/* CGPA Badge */}
+                {/* FIX: CGPA Badge with Bright, Eye-Catching Colors */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1.2, duration: 0.5 }}
-                  className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 md:-top-5 md:-right-5 glass rounded-xl px-2 py-1 sm:px-3 sm:py-1.5 md:px-5 md:py-2.5 text-[8px] sm:text-xs md:text-sm font-mono border-2 border-accent-400/60 bg-gradient-to-br from-accent-900/90 to-purple-900/90 backdrop-blur-xl shadow-2xl shadow-accent-500/40 animate-pulse whitespace-nowrap"
+                  className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 md:-top-5 md:-right-5 rounded-xl px-2 py-1 sm:px-3 sm:py-1.5 md:px-5 md:py-2.5 text-[8px] sm:text-xs md:text-sm font-mono border-2 border-yellow-400/80 bg-gradient-to-br from-yellow-500/90 via-amber-500/90 to-orange-500/90 backdrop-blur-xl shadow-2xl shadow-yellow-500/60 animate-pulse whitespace-nowrap"
                 >
-                  <span className="text-accent-300 font-bold text-[10px] sm:text-xs md:text-base">
+                  <span className="text-white font-bold text-[10px] sm:text-xs md:text-base drop-shadow-lg">
                     ⭐ CGPA 8.30
                   </span>
                 </motion.div>
