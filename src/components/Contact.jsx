@@ -111,7 +111,7 @@ export default function Contact() {
                   { icon: FiLinkedin, href: 'https://www.linkedin.com/in/kundan-suryawanshi/',     label: 'LinkedIn' },
                   { icon: FiMail,     href: 'mailto:kundansurya24@gmail.com',                      label: 'Email' },
                 ].map(({ icon: Icon, href, label }) => (
-                  
+                  <a
                     key={label}
                     href={href}
                     target="_blank"
@@ -223,3 +223,4 @@ export default function Contact() {
     </section>
   )
 }
+
