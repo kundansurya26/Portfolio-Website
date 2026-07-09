@@ -56,7 +56,7 @@ export default function About() {
               CGPA of 8.30.
             </p>
 
-            {/* Stats row */}
+            {/* FIX: Stats row - More visible on mobile */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-10">
               {stats.map((s, i) => (
                 <motion.div
@@ -64,10 +64,16 @@ export default function About() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.3 + i * 0.1, duration: 0.5 }}
-                  className="glass rounded-xl p-3 sm:p-4 text-center"
+                  className="glass rounded-xl p-3 sm:p-4 text-center border border-white/5"
                 >
-                  <div className="font-display font-bold text-xl sm:text-2xl gradient-text">{s.value}</div>
-                  <div className="text-slate-500 text-[10px] sm:text-xs mt-1">{s.label}</div>
+                  {/* FIX: Larger text on mobile */}
+                  <div className="font-display font-bold text-2xl sm:text-3xl md:text-4xl gradient-text">
+                    {s.value}
+                  </div>
+                  {/* FIX: More visible label */}
+                  <div className="text-slate-400 text-xs sm:text-sm font-medium mt-1 sm:mt-2">
+                    {s.label}
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -117,4 +123,5 @@ export default function About() {
       </div>
     </section>
   )
+}
 }
