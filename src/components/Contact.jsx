@@ -1,218 +1,246 @@
-import { useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { useInView } from '../hooks/useInView'
-import { FiGithub, FiLinkedin, FiMail, FiPhone, FiMapPin, FiSend } from 'react-icons/fi'
-import { HiCheckCircle, HiXCircle } from 'react-icons/hi'
+import { HiArrowDown, HiDownload } from 'react-icons/hi'
+import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi'
+import profileImg from '../assets/profile.jpg'
+import resumePDF from '../assets/Kundan_resume.pdf'
 
-export default function Contact() {
-  const { ref, inView } = useInView()
-  const formRef = useRef(null)
-  const [form, setForm] = useState({ name: '', email: '', message: '' })
-  const [status, setStatus] = useState('idle')
-  const [errorMsg, setErrorMsg] = useState('')
+const TYPED_STRINGS = [
+  'Building Scalable Web Apps',
+  'Crafting Data-Driven Solutions',
+  'Full Stack Developer',
+  'ML Enthusiast',
+]
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
+function TypingEffect() {
+  const [text, setText] = useState('')
+  const [idx, setIdx] = useState(0)
+  const [deleting, setDeleting] = useState(false)
+  const [charIdx, setCharIdx] = useState(0)
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setStatus('sending')
-    setErrorMsg('')
+  useEffect(() => {
+    const current = TYPED_STRINGS[idx]
+    let timeout
 
-    try {
-      const res = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      })
-
-      const data = await res.json()
-
-      if (!res.ok) {
-        throw new Error(data.error || 'Failed to send')
-      }
-
-      setStatus('success')
-      setForm({ name: '', email: '', message: '' })
-      setTimeout(() => setStatus('idle'), 5000)
-    } catch (err) {
-      console.error('Send error:', err)
-      setErrorMsg(err.message)
-      setStatus('error')
-      setTimeout(() => setStatus('idle'), 8000)
+    if (!deleting && charIdx <= current.length) {
+      timeout = setTimeout(() => {
+        setText(current.slice(0, charIdx))
+        setCharIdx((c) => c + 1)
+      }, 60)
+    } else if (deleting && charIdx >= 0) {
+      timeout = setTimeout(() => {
+        setText(current.slice(0, charIdx))
+        setCharIdx((c) => c - 1)
+      }, 30)
+    } else if (!deleting && charIdx > current.length) {
+      timeout = setTimeout(() => setDeleting(true), 1800)
+    } else if (deleting && charIdx < 0) {
+      setDeleting(false)
+      setIdx((i) => (i + 1) % TYPED_STRINGS.length)
+      setCharIdx(0)
     }
-  }
+
+    return () => clearTimeout(timeout)
+  }, [charIdx, deleting, idx])
 
   return (
-    <section id="contact" ref={ref} className="py-16 sm:py-20 md:py-28 relative overflow-hidden">
+    <span className="gradient-text text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
+      {text}
+      <span className="animate-pulse text-brand-400">|</span>
+    </span>
+  )
+}
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.12, delayChildren: 0.2 },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+}
+
+export default function Hero() {
+  return (
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center overflow-hidden pt-16 sm:pt-20"
+    >
+      {/* Background */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-radial from-brand-900/20 via-transparent to-transparent" />
-        <div className="absolute left-0 bottom-0 w-48 h-48 sm:w-80 sm:h-80 bg-brand-600/8 rounded-full blur-3xl" />
-        <div className="absolute right-0 top-0 w-48 h-48 sm:w-80 sm:h-80 bg-accent-600/8 rounded-full blur-3xl" />
+        <div className="absolute inset-0 bg-mesh-gradient opacity-60" />
+        <motion.div
+          animate={{ scale: [1, 1.15, 1], opacity: [0.15, 0.25, 0.15] }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute top-1/4 left-1/4 w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 bg-brand-600/20 rounded-full blur-3xl"
+        />
+        <motion.div
+          animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+          className="absolute bottom-1/4 right-1/4 w-40 h-40 sm:w-56 sm:h-56 md:w-80 md:h-80 bg-accent-600/20 rounded-full blur-3xl"
+        />
+        <div
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(99,102,241,1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(99,102,241,1) 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px',
+          }}
+        />
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-10 sm:mb-16"
-        >
-          <p className="font-mono text-brand-400 text-[10px] sm:text-xs tracking-widest uppercase mb-2 sm:mb-3">Get In Touch</p>
-          <h2 className="section-heading text-3xl sm:text-4xl md:text-5xl">Contact Me</h2>
-          <div className="w-12 h-0.5 bg-gradient-to-r from-brand-600 to-accent-600 mx-auto mt-3 sm:mt-4 mb-3 sm:mb-4" />
-          <p className="text-slate-400 text-xs sm:text-sm max-w-md mx-auto px-4">
-            I'm open to internships, collaborations, and freelance opportunities. Let's build something amazing together.
-          </p>
-        </motion.div>
-
-        <div className="grid lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-10">
-          {/* Info column */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full py-12 sm:py-16 md:py-20">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+          {/* Left — Text */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="lg:col-span-2 space-y-3 sm:space-y-4"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="order-2 lg:order-1 text-center lg:text-left"
           >
-            {[
-              { icon: FiMail,    label: 'Email',    value: 'kundansurya24@gmail.com', href: 'mailto:kundansurya24@gmail.com' },
-              { icon: FiPhone,   label: 'Phone',    value: '+91 72498 19135',         href: 'tel:+917249819135' },
-              { icon: FiMapPin,  label: 'Location', value: 'Ahmedabad, Gujarat',      href: null },
-            ].map((item) => (
-              <div key={item.label} className="glass-hover rounded-xl p-3 sm:p-4 flex items-center gap-3 sm:gap-4 group">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-brand-600/10 border border-brand-600/20 flex items-center justify-center text-brand-400 shrink-0">
-                  <item.icon size={14} className="sm:w-4 sm:h-4" />
-                </div>
-                <div className="min-w-0">
-                  <p className="text-slate-500 text-[10px] sm:text-xs font-mono">{item.label}</p>
-                  {item.href
-                    ? <a href={item.href} className="text-slate-200 text-xs sm:text-sm hover:text-brand-400 transition-colors truncate block">{item.value}</a>
-                    : <p className="text-slate-200 text-xs sm:text-sm">{item.value}</p>
-                  }
-                </div>
-              </div>
-            ))}
+            <motion.div variants={itemVariants} className="flex items-center justify-center lg:justify-start gap-3 mb-4 sm:mb-6">
+              <span className="bg-green-500/20 border border-green-500/30 text-green-300 text-[10px] sm:text-xs font-medium px-3 py-1.5 rounded-full">
+                <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-green-400 mr-1.5 sm:mr-2 animate-pulse inline-block" />
+                Available for opportunities
+              </span>
+            </motion.div>
 
-            {/* Socials */}
-            <div className="glass rounded-xl p-4 sm:p-5">
-              <p className="text-slate-500 text-[10px] sm:text-xs font-mono uppercase tracking-widest mb-3 sm:mb-4">Find me on</p>
-              <div className="flex gap-2 sm:gap-3">
-                {[
-                  { icon: FiGithub,   href: 'https://github.com/kundansurya26',                    label: 'GitHub' },
-                  { icon: FiLinkedin, href: 'https://www.linkedin.com/in/kundan-suryawanshi/',     label: 'LinkedIn' },
-                  { icon: FiMail,     href: 'mailto:kundansurya24@gmail.com',                      label: 'Email' },
-                ].map(({ icon: Icon, href, label }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={label}
-                    className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 glass rounded-xl flex items-center justify-center text-slate-400 hover:text-brand-400 hover:border-brand-600/40 transition-all hover:scale-110"
-                  >
-                    <Icon size={15} className="sm:w-[17px] sm:h-[17px]" />
-                  </a>
-                ))}
-              </div>
-            </div>
+            <motion.p variants={itemVariants} className="font-mono text-brand-400 text-sm sm:text-base mb-2 sm:mb-3 tracking-widest uppercase font-semibold">
+              Hi there, I'm
+            </motion.p>
+
+            <motion.h1 variants={itemVariants} className="font-display font-extrabold text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white leading-[1.1] sm:leading-none mb-3 sm:mb-4 tracking-tight">
+              Kundan<br />
+              <span className="text-slate-400">Suryawanshi</span>
+            </motion.h1>
+
+            <motion.div variants={itemVariants} className="font-display text-xl sm:text-2xl md:text-3xl text-white mb-4 sm:mb-6 h-10 sm:h-12 flex items-center justify-center lg:justify-start">
+              <TypingEffect />
+            </motion.div>
+
+            <motion.p variants={itemVariants} className="text-slate-300 text-base sm:text-lg leading-relaxed mb-6 sm:mb-10 max-w-lg mx-auto lg:mx-0 font-body">
+              Motivated B.Tech CSE student passionate about building responsive web applications
+              and analyzing data to generate insights. Skilled in Python, React, and modern web technologies.
+            </motion.p>
+
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4 mb-6 sm:mb-10">
+              <a href="#projects" className="btn-primary justify-center text-sm sm:text-base py-3 sm:py-3.5 px-6 sm:px-8">
+                View Projects
+                <HiArrowDown className="w-4 h-4" />
+              </a>
+              <a
+                href={resumePDF}
+                download="Kundan_Suryawanshi_Resume.pdf"
+                className="btn-outline justify-center text-sm sm:text-base py-3 sm:py-3.5 px-6 sm:px-8"
+              >
+                <HiDownload className="w-4 h-4" />
+                Download Resume
+              </a>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="flex items-center justify-center lg:justify-start gap-3 sm:gap-5">
+              {[
+                { icon: FiGithub, href: 'https://github.com/kundansurya26', label: 'GitHub' },
+                { icon: FiLinkedin, href: 'https://www.linkedin.com/in/kundan-suryawanshi/', label: 'LinkedIn' },
+                { icon: FiMail, href: 'mailto:kundansurya24@gmail.com', label: 'Email' },
+              ].map(({ icon: Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="w-10 h-10 sm:w-12 sm:h-12 glass rounded-xl flex items-center justify-center text-slate-300 hover:text-brand-400 hover:border-brand-600/40 transition-all duration-200 hover:scale-110 border border-white/10"
+                >
+                  <Icon size={18} className="sm:w-5 sm:h-5" />
+                </a>
+              ))}
+              <span className="text-slate-500 text-xs sm:text-sm font-mono ml-0 sm:ml-1 hidden sm:inline">kundansurya26</span>
+            </motion.div>
           </motion.div>
 
-          {/* Form */}
+          {/* Right — Profile */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.25 }}
-            className="lg:col-span-3"
+            initial={{ opacity: 0, x: 60 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.9, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="order-1 lg:order-2 flex justify-center lg:justify-end mb-6 sm:mb-8 lg:mb-0"
           >
-            <form ref={formRef} onSubmit={handleSubmit} className="glass rounded-2xl p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-5">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-                <div>
-                  <label className="block text-slate-400 text-[10px] sm:text-xs font-mono uppercase tracking-widest mb-1.5 sm:mb-2">Your Name</label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={form.name}
-                    onChange={handleChange}
-                    placeholder="John Doe"
-                    required
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-white text-xs sm:text-sm placeholder:text-slate-600 focus:outline-none focus:border-brand-600/50 focus:bg-brand-600/5 transition-all"
-                  />
-                </div>
-                <div>
-                  <label className="block text-slate-400 text-[10px] sm:text-xs font-mono uppercase tracking-widest mb-1.5 sm:mb-2">Email Address</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    placeholder="john@example.com"
-                    required
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-white text-xs sm:text-sm placeholder:text-slate-600 focus:outline-none focus:border-brand-600/50 focus:bg-brand-600/5 transition-all"
-                  />
-                </div>
-              </div>
+            <div className="relative">
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+                className="absolute -inset-3 sm:-inset-4 rounded-full border border-dashed border-brand-600/20"
+              />
+              <motion.div
+                animate={{ rotate: -360 }}
+                transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
+                className="absolute -inset-5 sm:-inset-8 rounded-full border border-dashed border-accent-600/10"
+              />
 
-              <div>
-                <label className="block text-slate-400 text-[10px] sm:text-xs font-mono uppercase tracking-widest mb-1.5 sm:mb-2">Message</label>
-                <textarea
-                  name="message"
-                  value={form.message}
-                  onChange={handleChange}
-                  placeholder="Tell me about your project or opportunity..."
-                  required
-                  rows={4}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-white text-xs sm:text-sm placeholder:text-slate-600 focus:outline-none focus:border-brand-600/50 focus:bg-brand-600/5 transition-all resize-none"
-                />
-              </div>
-
-              {/* Status messages */}
-              {status === 'success' && (
-                <motion.div
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="flex items-center gap-1.5 sm:gap-2 text-green-400 bg-green-500/10 border border-green-500/20 rounded-xl px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm"
-                >
-                  <HiCheckCircle size={16} className="sm:w-[18px] sm:h-[18px]" />
-                  Message sent! I'll get back to you soon.
-                </motion.div>
-              )}
-              {status === 'error' && (
-                <motion.div
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="flex flex-col gap-1 text-red-400 bg-red-500/10 border border-red-500/20 rounded-xl px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm"
-                >
-                  <span className="flex items-center gap-1.5 sm:gap-2">
-                    <HiXCircle size={16} className="sm:w-[18px] sm:h-[18px]" />
-                    Something went wrong. Please try again or email me directly.
-                  </span>
-                  {errorMsg && (
-                    <span className="text-red-300/70 text-[10px] sm:text-xs pl-5 sm:pl-6">
-                      Details: {errorMsg}
-                    </span>
-                  )}
-                </motion.div>
-              )}
-
-            <button
-                type="submit"
-                disabled={status === 'sending' || status === 'success'}
-                className={`w-full bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-700 hover:to-accent-700 text-white font-semibold text-base sm:text-lg py-3.5 sm:py-4 px-6 rounded-xl transition-all duration-300 shadow-lg shadow-brand-600/30 hover:shadow-xl hover:scale-[1.02] flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100 ${
-                  status === 'success' ? 'from-green-600 to-green-500 hover:from-green-700 hover:to-green-600' : ''
-                }`}
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+                className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-80 lg:h-80"
               >
-                {status === 'sending' ? (
-                  <><span className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" /> Sending...</>
-                ) : status === 'success' ? (
-                  <><HiCheckCircle size={20} className="sm:w-[22px] sm:h-[22px]" /> Message Sent!</>
-                ) : (
-                  <><FiSend size={18} className="sm:w-5 sm:h-5" /> Send Message</>
-                )}
-              </button>
-            </form>
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-brand-600/30 to-accent-600/30 blur-2xl" />
+                <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-brand-600/30 shadow-2xl shadow-brand-600/20">
+                  <img
+                    src={profileImg}
+                    alt="Kundan Suryawanshi"
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+
+                {/* Developer Badge */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 1, duration: 0.5 }}
+                  className="absolute -bottom-2 -left-4 sm:-bottom-3 sm:-left-6 glass rounded-xl px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm font-mono text-brand-300 border border-brand-600/30 bg-brand-900/70 backdrop-blur-xl shadow-lg shadow-brand-600/20"
+                >
+                  <span className="text-slate-400">&lt;</span>
+                  developer
+                  <span className="text-slate-400"> /&gt;</span>
+                </motion.div>
+
+                {/* FIX: CGPA Badge - More visible with better styling */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 1.2, duration: 0.5 }}
+                  className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 glass rounded-xl px-3 py-2 sm:px-5 sm:py-3 text-xs sm:text-sm font-mono border-2 border-accent-500/50 bg-gradient-to-br from-accent-900/90 to-brand-900/90 backdrop-blur-xl shadow-xl shadow-accent-600/30"
+                >
+                  <span className="text-accent-300 font-bold text-sm sm:text-base">
+                    CGPA 8.30 ✦
+                  </span>
+                </motion.div>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2 }}
+        className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 sm:gap-2 text-slate-500 hidden sm:flex"
+      >
+        <span className="text-[10px] sm:text-xs font-mono tracking-widest uppercase">Scroll</span>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        >
+          <HiArrowDown size={14} className="sm:w-4 sm:h-4" />
+        </motion.div>
+      </motion.div>
     </section>
   )
 }
