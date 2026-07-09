@@ -136,7 +136,7 @@ export default function Certifications() {
           <div className="glass rounded-xl px-4 sm:px-6 py-2 sm:py-3 flex items-center gap-2 sm:gap-3">
             <HiBadgeCheck className="text-brand-400" size={16} />
             <span className="text-slate-400 text-xs sm:text-sm">
-              <span className="text-white font-medium">3 Certifications</span> earned from industry leaders
+              <span className="text-white font-medium">5 Certifications</span> earned from industry leaders
             </span>
           </div>
         </motion.div>
