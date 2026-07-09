@@ -51,7 +51,7 @@ const projects = [
     description: 'Designed and developed a responsive personal portfolio website with smooth animations, dark theme, and modern UI showcasing projects and skills.',
     tags: ['React', 'TailwindCSS', 'Framer Motion', 'Vite'],
     category: 'Web',
-    github: 'https://portfolio-tdh5.vercel.app/',
+    github: 'https://portfolio-website-mb3r-phi.vercel.app',
     live: null,
     icon: HiGlobe,
     gradient: 'from-purple-600/20 to-accent-600/20',
