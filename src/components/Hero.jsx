@@ -131,6 +131,7 @@ export default function Hero() {
               and analyzing data to generate insights. Skilled in Python, React, and modern web technologies.
             </motion.p>
 
+            {/* FIX: Buttons with Download Resume */}
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row justify-center lg:justify-start gap-2 sm:gap-4 mb-4 sm:mb-10">
               <a href="#projects" className="btn-primary justify-center text-xs sm:text-base py-2 sm:py-3.5 px-4 sm:px-8">
                 View Projects
@@ -139,7 +140,7 @@ export default function Hero() {
               <a
                 href={resumePDF}
                 download="Kundan_Suryawanshi_Resume.pdf"
-                className="btn-outline justify-center text-xs sm:text-base py-2 sm:py-3.5 px-4 sm:px-8"
+                className="btn-primary justify-center text-xs sm:text-base py-2 sm:py-3.5 px-4 sm:px-8 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 shadow-lg shadow-green-600/30"
               >
                 <HiDownload className="w-3 h-3 sm:w-4 sm:h-4" />
                 Download Resume
@@ -200,7 +201,7 @@ export default function Hero() {
                   />
                 </div>
 
-                {/* FIX: Developer Badge - Original colors, white text */}
+                {/* Developer Badge */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -212,7 +213,7 @@ export default function Hero() {
                   <span className="text-white/60 font-bold"> /&gt;</span>
                 </motion.div>
 
-                {/* FIX: CGPA Badge - Original colors, white text */}
+                {/* CGPA Badge */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
