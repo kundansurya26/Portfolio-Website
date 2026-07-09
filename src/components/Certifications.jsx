@@ -36,6 +36,28 @@ const certifications = [
     iconColor: 'text-accent-400',
     year: '2024',
   },
+   {
+    title: 'Generative AI with Large Language Models ',
+    subtitle: 'Virtual Experience Program',
+    issuer: 'Coursera',
+    icon: HiShieldCheck,
+    color: 'from-accent-500 to-accent-400',
+    bg: 'bg-accent-500/10',
+    border: 'border-accent-500/20',
+    iconColor: 'text-accent-400',
+    year: '2026',
+  },
+   {
+    title: 'Retrieval-Augmented Generation (RAG)',
+    subtitle: 'Virtual Experience Program',
+    issuer: 'Coursera',
+    icon: HiShieldCheck,
+    color: 'from-accent-500 to-accent-400',
+    bg: 'bg-accent-500/10',
+    border: 'border-accent-500/20',
+    iconColor: 'text-accent-400',
+    year: '2026',
+  },
 ]
 
 export default function Certifications() {
