@@ -68,29 +68,29 @@ export default function Projects() {
   const filtered = active === 'All' ? projects : projects.filter((p) => p.category === active)
 
   return (
-    <section id="projects" ref={ref} className="py-28 relative overflow-hidden">
+    <section id="projects" ref={ref} className="py-16 sm:py-20 md:py-28 relative overflow-hidden">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-600/5 rounded-full blur-3xl" />
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 sm:w-96 sm:h-96 bg-brand-600/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="text-center mb-12"
+          className="text-center mb-8 sm:mb-12"
         >
-          <p className="font-mono text-brand-400 text-xs tracking-widest uppercase mb-3">What I've Built</p>
-          <h2 className="section-heading">Projects</h2>
-          <div className="w-12 h-0.5 bg-gradient-to-r from-brand-600 to-accent-600 mx-auto mt-4 mb-10" />
+          <p className="font-mono text-brand-400 text-[10px] sm:text-xs tracking-widest uppercase mb-2 sm:mb-3">What I've Built</p>
+          <h2 className="section-heading text-3xl sm:text-4xl md:text-5xl">Projects</h2>
+          <div className="w-12 h-0.5 bg-gradient-to-r from-brand-600 to-accent-600 mx-auto mt-3 sm:mt-4 mb-6 sm:mb-10" />
 
-          {/* Filter tabs */}
-          <div className="inline-flex glass rounded-xl p-1.5 gap-1">
+          {/* Filter tabs - responsive */}
+          <div className="inline-flex glass rounded-xl p-1 gap-1 overflow-x-auto max-w-full">
             {filters.map((f) => (
               <button
                 key={f}
                 onClick={() => setActive(f)}
-                className={`px-5 py-2 rounded-lg text-sm font-display font-medium transition-all duration-200 ${
+                className={`px-3 sm:px-5 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-display font-medium transition-all duration-200 whitespace-nowrap ${
                   active === f
                     ? 'bg-gradient-to-r from-brand-600 to-accent-600 text-white shadow-lg shadow-brand-600/25'
                     : 'text-slate-400 hover:text-white'
@@ -102,7 +102,7 @@ export default function Projects() {
           </div>
         </motion.div>
 
-        <motion.div layout className="grid md:grid-cols-2 gap-6">
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           <AnimatePresence>
             {filtered.map((project, i) => (
               <motion.div
@@ -116,22 +116,22 @@ export default function Projects() {
                 className="glass-hover rounded-2xl overflow-hidden group cursor-default"
               >
                 {/* Card header gradient */}
-                <div className={`h-2 w-full bg-gradient-to-r ${project.gradient.replace('/20', '')} opacity-60`} />
+                <div className={`h-1 sm:h-2 w-full bg-gradient-to-r ${project.gradient.replace('/20', '')} opacity-60`} />
 
-                <div className="p-7">
-                  <div className="flex items-start justify-between mb-5">
-                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${project.gradient} border border-white/10 flex items-center justify-center`}>
-                      <project.icon className="text-white" size={22} />
+                <div className="p-4 sm:p-6 md:p-7">
+                  <div className="flex items-start justify-between mb-4 sm:mb-5">
+                    <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br ${project.gradient} border border-white/10 flex items-center justify-center shrink-0`}>
+                      <project.icon className="text-white text-sm sm:text-base" size={18} />
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex gap-1.5 sm:gap-2">
                       {project.github && (
                         <a
                           href={project.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-8 h-8 glass rounded-lg flex items-center justify-center text-slate-400 hover:text-white transition-all hover:scale-110"
+                          className="w-7 h-7 sm:w-8 sm:h-8 glass rounded-lg flex items-center justify-center text-slate-400 hover:text-white transition-all hover:scale-110"
                         >
-                          <FiGithub size={15} />
+                          <FiGithub size={13} className="sm:w-[15px] sm:h-[15px]" />
                         </a>
                       )}
                       {project.live && (
@@ -139,51 +139,21 @@ export default function Projects() {
                           href={project.live}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-8 h-8 glass rounded-lg flex items-center justify-center text-slate-400 hover:text-brand-400 transition-all hover:scale-110"
+                          className="w-7 h-7 sm:w-8 sm:h-8 glass rounded-lg flex items-center justify-center text-slate-400 hover:text-brand-400 transition-all hover:scale-110"
                         >
-                          <FiExternalLink size={15} />
+                          <FiExternalLink size={13} className="sm:w-[15px] sm:h-[15px]" />
                         </a>
                       )}
                     </div>
                   </div>
 
-                  <div className="mb-3">
-                    <p className="font-mono text-xs text-slate-500 mb-1">{project.subtitle}</p>
-                    <h3 className="font-display font-bold text-lg text-white group-hover:text-brand-400 transition-colors">
+                  <div className="mb-2 sm:mb-3">
+                    <p className="font-mono text-[10px] sm:text-xs text-slate-500 mb-0.5 sm:mb-1">{project.subtitle}</p>
+                    <h3 className="font-display font-bold text-base sm:text-lg text-white group-hover:text-brand-400 transition-colors">
                       {project.title}
                     </h3>
                   </div>
 
-                  <p className="text-slate-400 text-sm leading-relaxed mb-5">{project.description}</p>
+                  <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-5">{project.description}</p>
 
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.tags.map((tag) => (
-                      <span key={tag} className="tag text-xs">{tag}</span>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.8 }}
-          className="text-center mt-10"
-        >
-          <a
-            href="https://github.com/kundansurya26"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-outline"
-          >
-            <FiGithub size={16} />
-            View All on GitHub
-          </a>
-        </motion.div>
-      </div>
-    </section>
-  )
-}
+                  <div className="flex flex-wrap gap-1 sm:gap
