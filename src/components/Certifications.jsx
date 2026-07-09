@@ -38,7 +38,7 @@ const certifications = [
   },
    {
     title: 'Generative AI with Large Language Models ',
-    subtitle: 'Virtual Experience Program',
+    subtitle: 'LLMs, Prompt Engineering & Generative Al.',
     issuer: 'Coursera',
     icon: HiShieldCheck,
     color: 'from-accent-500 to-accent-400',
@@ -49,7 +49,7 @@ const certifications = [
   },
    {
     title: 'Retrieval-Augmented Generation (RAG)',
-    subtitle: 'Virtual Experience Program',
+    subtitle: 'RAG Pipelines, Vector Search & LLM Integration.',
     issuer: 'Coursera',
     icon: HiShieldCheck,
     color: 'from-accent-500 to-accent-400',
