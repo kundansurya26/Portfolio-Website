@@ -95,8 +95,8 @@ export default function Hero() {
         />
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full py-12 sm:py-16 md:py-20">
-        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full py-8 sm:py-12 md:py-20">
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-16 items-center">
           {/* Left — Text */}
           <motion.div
             variants={containerVariants}
@@ -104,7 +104,7 @@ export default function Hero() {
             animate="visible"
             className="order-2 lg:order-1 text-center lg:text-left"
           >
-            <motion.div variants={itemVariants} className="flex items-center justify-center lg:justify-start gap-3 mb-4 sm:mb-6">
+            <motion.div variants={itemVariants} className="flex items-center justify-center lg:justify-start gap-3 mb-3 sm:mb-6">
               <span className="bg-green-500/20 border border-green-500/30 text-green-300 text-[10px] sm:text-xs font-medium px-3 py-1.5 rounded-full">
                 <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-green-400 mr-1.5 sm:mr-2 animate-pulse inline-block" />
                 Available for opportunities
@@ -115,29 +115,30 @@ export default function Hero() {
               Hi there, I'm
             </motion.p>
 
-            <motion.h1 variants={itemVariants} className="font-display font-extrabold text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white leading-[1.1] sm:leading-none mb-3 sm:mb-4 tracking-tight">
+            {/* FIX 1: Name - Smaller on mobile to prevent hiding */}
+            <motion.h1 variants={itemVariants} className="font-display font-extrabold text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white leading-[1.1] sm:leading-none mb-2 sm:mb-4 tracking-tight">
               Kundan<br />
               <span className="text-slate-400">Suryawanshi</span>
             </motion.h1>
 
-            <motion.div variants={itemVariants} className="font-display text-xl sm:text-2xl md:text-3xl text-white mb-4 sm:mb-6 h-10 sm:h-12 flex items-center justify-center lg:justify-start">
+            <motion.div variants={itemVariants} className="font-display text-lg sm:text-xl md:text-2xl lg:text-3xl text-white mb-3 sm:mb-6 h-8 sm:h-12 flex items-center justify-center lg:justify-start">
               <TypingEffect />
             </motion.div>
 
-            <motion.p variants={itemVariants} className="text-slate-300 text-base sm:text-lg leading-relaxed mb-6 sm:mb-10 max-w-lg mx-auto lg:mx-0 font-body">
+            <motion.p variants={itemVariants} className="text-slate-300 text-sm sm:text-base lg:text-lg leading-relaxed mb-6 sm:mb-10 max-w-lg mx-auto lg:mx-0 font-body">
               Motivated B.Tech CSE student passionate about building responsive web applications
               and analyzing data to generate insights. Skilled in Python, React, and modern web technologies.
             </motion.p>
 
             <motion.div variants={itemVariants} className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4 mb-6 sm:mb-10">
-              <a href="#projects" className="btn-primary justify-center text-sm sm:text-base py-3 sm:py-3.5 px-6 sm:px-8">
+              <a href="#projects" className="btn-primary justify-center text-sm sm:text-base py-2.5 sm:py-3.5 px-5 sm:px-8">
                 View Projects
                 <HiArrowDown className="w-4 h-4" />
               </a>
               <a
                 href={resumePDF}
                 download="Kundan_Suryawanshi_Resume.pdf"
-                className="btn-outline justify-center text-sm sm:text-base py-3 sm:py-3.5 px-6 sm:px-8"
+                className="btn-outline justify-center text-sm sm:text-base py-2.5 sm:py-3.5 px-5 sm:px-8"
               >
                 <HiDownload className="w-4 h-4" />
                 Download Resume
@@ -156,9 +157,9 @@ export default function Hero() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="w-10 h-10 sm:w-12 sm:h-12 glass rounded-xl flex items-center justify-center text-slate-300 hover:text-brand-400 hover:border-brand-600/40 transition-all duration-200 hover:scale-110 border border-white/10"
+                  className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 glass rounded-xl flex items-center justify-center text-slate-300 hover:text-brand-400 hover:border-brand-600/40 transition-all duration-200 hover:scale-110 border border-white/10"
                 >
-                  <Icon size={18} className="sm:w-5 sm:h-5" />
+                  <Icon size={16} className="sm:w-[18px] sm:h-[18px] md:w-5 md:h-5" />
                 </a>
               ))}
               <span className="text-slate-500 text-xs sm:text-sm font-mono ml-0 sm:ml-1 hidden sm:inline">kundansurya26</span>
@@ -170,7 +171,7 @@ export default function Hero() {
             initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="order-1 lg:order-2 flex justify-center lg:justify-end mb-6 sm:mb-8 lg:mb-0"
+            className="order-1 lg:order-2 flex justify-center lg:justify-end mb-4 sm:mb-6 lg:mb-0"
           >
             <div className="relative">
               <motion.div
@@ -184,10 +185,11 @@ export default function Hero() {
                 className="absolute -inset-5 sm:-inset-8 rounded-full border border-dashed border-accent-600/10"
               />
 
+              {/* FIX 2: Smaller avatar on mobile to prevent overlap */}
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-                className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-80 lg:h-80"
+                className="relative w-36 h-36 sm:w-48 sm:h-48 md:w-56 md:h-56 lg:w-72 lg:h-72"
               >
                 <div className="absolute inset-0 rounded-full bg-gradient-to-br from-brand-600/30 to-accent-600/30 blur-2xl" />
                 <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-brand-600/30 shadow-2xl shadow-brand-600/20">
@@ -198,27 +200,27 @@ export default function Hero() {
                   />
                 </div>
 
-                {/* Developer Badge */}
+                {/* FIX 3: Developer Badge - More prominent */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1, duration: 0.5 }}
-                  className="absolute -bottom-2 -left-4 sm:-bottom-3 sm:-left-6 glass rounded-xl px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm font-mono text-brand-300 border border-brand-600/30 bg-brand-900/70 backdrop-blur-xl shadow-lg shadow-brand-600/20"
+                  className="absolute -bottom-3 -left-5 sm:-bottom-4 sm:-left-6 glass rounded-xl px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm font-mono border-2 border-brand-500/50 bg-brand-900/80 backdrop-blur-xl shadow-xl shadow-brand-600/30"
                 >
-                  <span className="text-slate-400">&lt;</span>
-                  developer
-                  <span className="text-slate-400"> /&gt;</span>
+                  <span className="text-slate-400 font-bold">&lt;</span>
+                  <span className="text-brand-300 font-bold">developer</span>
+                  <span className="text-slate-400 font-bold"> /&gt;</span>
                 </motion.div>
 
-                {/* FIX: CGPA Badge - More visible with better styling */}
+                {/* FIX 4: CGPA Badge - Ultra prominent with glow */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1.2, duration: 0.5 }}
-                  className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 glass rounded-xl px-3 py-2 sm:px-5 sm:py-3 text-xs sm:text-sm font-mono border-2 border-accent-500/50 bg-gradient-to-br from-accent-900/90 to-brand-900/90 backdrop-blur-xl shadow-xl shadow-accent-600/30"
+                  className="absolute -top-4 -right-4 sm:-top-5 sm:-right-5 glass rounded-xl px-3 py-2 sm:px-5 sm:py-3 text-xs sm:text-sm font-mono border-2 border-accent-400/60 bg-gradient-to-br from-accent-900/90 to-purple-900/90 backdrop-blur-xl shadow-2xl shadow-accent-500/40 animate-pulse"
                 >
-                  <span className="text-accent-300 font-bold text-sm sm:text-base">
-                    CGPA 8.30 ✦
+                  <span className="text-accent-300 font-bold text-sm sm:text-base md:text-lg">
+                    ⭐ CGPA 8.30
                   </span>
                 </motion.div>
               </motion.div>
