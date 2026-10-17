@@ -10,7 +10,7 @@ const facts = [
 ]
 
 const stats = [
-  { value: '8.30', label: 'CGPA', suffix: '' },
+  { value: '9.00', label: 'CGPA', suffix: '' },
   { value: '4+', label: 'Projects', suffix: '' },
   { value: '2+', label: 'Certifications', suffix: '' },
   { value: '2027', label: 'Graduating', suffix: '' },
