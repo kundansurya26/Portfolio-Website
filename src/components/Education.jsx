@@ -6,7 +6,7 @@ const education = [
     degree: 'B.Tech — Computer Science & Engineering',
     institution: 'Indus University, Ahmedabad, Gujarat',
     period: '2023 – 2027',
-    score: 'CGPA: 8.30',
+    score: 'CGPA: 9.00',
     status: 'current',
   },
   {
