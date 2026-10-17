@@ -237,7 +237,7 @@ export default function Hero() {
                   className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 md:-top-5 md:-right-5 glass rounded-xl px-2 py-1 sm:px-3 sm:py-1.5 md:px-5 md:py-2.5 text-[8px] sm:text-xs md:text-sm font-mono border-2 border-accent-400/60 bg-gradient-to-br from-accent-900/90 to-purple-900/90 backdrop-blur-xl shadow-2xl shadow-accent-500/40 animate-pulse whitespace-nowrap"
                 >
                   <span className="text-white font-bold text-[10px] sm:text-xs md:text-base drop-shadow-lg">
-                    ⭐ CGPA 8.30
+                    ⭐ CGPA 9.00
                   </span>
                 </motion.div>
               </motion.div>
