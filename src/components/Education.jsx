@@ -13,7 +13,7 @@ const education = [
     degree: 'Higher Secondary Education (12th)',
     institution: 'P.G. Public School, Nandurbar, Maharashtra',
     period: '2023',
-    score: '72%',
+    score: '59%',
     status: 'completed',
   },
   {
